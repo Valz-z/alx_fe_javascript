@@ -160,19 +160,19 @@ async function postQuoteToServer(quote) {
 
 // Sync quotes from server
 async function syncQuotes() {
-  const serverQuotes = await fetchQuotesFromServer();
+  const serverQuotes = await fetchQuotesFromServer();
 
-  const newQuotes = serverQuotes.filter(
-    sq => !quotes.some(lq => lq.text === sq.text && lq.category === sq.category)
-  );
+  const newQuotes = serverQuotes.filter(
+    sq => !quotes.some(lq => lq.text === sq.text && lq.category === sq.category)
+  );
 
-  if (newQuotes.length > 0) {
-    quotes.push(...newQuotes);
-    saveQuotes();
-    populateCategories();
-    filterQuotes();
-    notifyUser("Quotes synced from server.");
-  }
+  if (newQuotes.length > 0) {
+    quotes.push(...newQuotes);
+    saveQuotes();
+    populateCategories();
+    filterQuotes();
+    notifyUser("Quotes synced with server!"); // ✅ exact string now used
+  }
 }
 
 // Periodic Sync
